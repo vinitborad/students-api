@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/vinitborad/students-api/internal/config"
+	"github.com/vinitborad/students-api/internal/http/handlers/student"
 )
 
 func main() {
@@ -25,6 +26,7 @@ func main() {
 	router.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("welcome to students api, written in go"))
 	})
+	router.HandleFunc("POST /api/students", student.New())
 
 	// server setup
 	server := http.Server{
