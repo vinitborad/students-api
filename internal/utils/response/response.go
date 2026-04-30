@@ -1,4 +1,3 @@
-// TODO: understand each peices of this file
 package response
 
 import (

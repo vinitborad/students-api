@@ -22,7 +22,6 @@ func main() {
 	// database setup
 	storage, err := sqlite.New(cfg)
 	if err != nil {
-		// TODO: check log pachi auto exit ke shu thay che?
 		log.Fatal(err)
 	}
 
@@ -48,7 +47,6 @@ func main() {
 
 	done := make(chan os.Signal, 1)
 
-	// TODO: learn about these options
 	signal.Notify(done, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
 
 	go func() {
@@ -60,9 +58,10 @@ func main() {
 
 	<-done
 
+	signal.Stop(done)
+
 	slog.Info("shutting down the server")
 
-	// TODO: learn more about the context and all
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
