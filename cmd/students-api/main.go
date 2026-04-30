@@ -35,6 +35,7 @@ func main() {
 		w.Write([]byte("welcome to students api, written in go"))
 	})
 	router.HandleFunc("POST /api/students", student.New(storage))
+	router.HandleFunc("GET /api/students/{id}", student.GetById(storage))
 
 	// server setup
 	server := http.Server{
